@@ -1,0 +1,18 @@
+#btn{
+    margin-right: 2rem;
+    color: black;
+    background-color: #B2BEBF;
+    border: 2px solid black;
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+}
+#btnDelete{
+    color: #919a9a;
+}
+#btnEdit{
+    color: #919a9a;
+}
+.contbtn{
+    display: flex;
+    justify-content: flex-end;
+}
