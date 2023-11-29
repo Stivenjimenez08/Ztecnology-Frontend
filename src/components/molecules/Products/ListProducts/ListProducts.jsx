@@ -1,12 +1,10 @@
 import React,{useEffect, useState} from "react";
 import {Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow} from "@mui/material";
 import axios from "axios";
-import './ListUSer.css'
 import { IconButton } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
 
-const ListUser = ({load, setIdUpdate, setIdDelete}) => {
+const ListProducts = ({load, setIdUpdate}) => {
     
   const [rows, setRows] = useState([])
   const [page, setPage] = useState(0);
@@ -14,9 +12,9 @@ const ListUser = ({load, setIdUpdate, setIdDelete}) => {
 
   useEffect(()=>{
     const fetchData = async () =>{
-      const response = await axios.get(`${import.meta.env.VITE_URL_SERVER}api/User/consultUser`)
+      const response = await axios.get(`${import.meta.env.VITE_URL_SERVER}api/Product/consultProduct`)
       console.log(response)
-      setRows(response.data.users)
+      setRows(response.data.products)
     }
     fetchData()
   },[load])
@@ -26,7 +24,7 @@ const ListUser = ({load, setIdUpdate, setIdDelete}) => {
   };
 
   const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(+event.target.value);
+    setRowsPerPage(event.target.value);
     setPage(0);
   };
   const handleEdit = async(id) =>{
@@ -43,11 +41,10 @@ const ListUser = ({load, setIdUpdate, setIdDelete}) => {
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
               <TableRow>
-                <TableCell>ID</TableCell>
-                <TableCell>Nombres</TableCell>
-                <TableCell>Apellidos</TableCell>
-                <TableCell>Email</TableCell>
-                <TableCell>Rol</TableCell>
+                <TableCell>Nombre</TableCell>
+                <TableCell>Descripcion</TableCell>
+                <TableCell>Stock</TableCell>
+                <TableCell>precio</TableCell>
                 <TableCell>Acciones</TableCell>
               </TableRow>
             </TableHead>
@@ -57,17 +54,13 @@ const ListUser = ({load, setIdUpdate, setIdDelete}) => {
                 .map((row) => {
                   return(
                     <TableRow key={row.id}>
-                    <TableCell>{row.id}</TableCell>
-                    <TableCell>{row.names}</TableCell>
-                    <TableCell>{row.lastName}</TableCell>
-                    <TableCell>{row.email}</TableCell>
-                    <TableCell>{row.role.name}</TableCell>
+                    <TableCell>{row.name}</TableCell>
+                    <TableCell>{row.description}</TableCell>
+                    <TableCell>{row.stock}</TableCell>
+                    <TableCell>{row.price}</TableCell>
                     <TableCell>
                       <IconButton id='btnEdit' aria-label='Editar' onClick={()=>{handleEdit(row.id)}}>
                         <EditIcon/>
-                      </IconButton>
-                      <IconButton id='btnDelete' aria-label='Eliminar' onClick={()=>{handleDelete(row.id)}}>
-                        <DeleteIcon/>
                       </IconButton>
                     </TableCell>
                   </TableRow>
@@ -87,10 +80,10 @@ const ListUser = ({load, setIdUpdate, setIdDelete}) => {
         />
       </Paper>
       <div className="contbtn">
-        <Button id='btn'>Crear Usuario</Button>
+        <Button id='btn'>Crear Producto</Button>
       </div>
     </div>
   );
 };
 
-export default ListUser;
+export default ListProducts;

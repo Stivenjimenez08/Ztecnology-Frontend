@@ -56,11 +56,11 @@ const ListCustomer = ({load, setIdUpdate, setIdDelete}) => {
                 .map((row) => {
                   return(
                     <TableRow key={row.id}>
-                    <TableCell>{row.names}</TableCell>
-                    <TableCell>{row.nit}</TableCell>
-                    <TableCell>{row.email}</TableCell>
-                    <TableCell>{row.address}</TableCell>
-                    <TableCell>
+                    <TableCell align="center">{row.names}</TableCell>
+                    <TableCell align="center">{row.nit}</TableCell>
+                    <TableCell align="center">{row.email}</TableCell>
+                    <TableCell align="center">{row.address}</TableCell>
+                    <TableCell align="center">
                       <IconButton id='btnEdit' aria-label='Editar' onClick={()=>{handleEdit(row.id)}}>
                         <EditIcon/>
                       </IconButton>

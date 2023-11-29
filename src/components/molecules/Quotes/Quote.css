@@ -1,0 +1,6 @@
+.row{
+    display: flex;
+    width: 35rem;
+    margin-top: .5rem;
+    gap:1em
+}

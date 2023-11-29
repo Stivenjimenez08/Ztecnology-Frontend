@@ -15,7 +15,8 @@ const CreateUser = ({load,setLoad}) => {
         validationSchema={Yup.object ({
           names: Yup.string().required('Este campo es obligatorio'),
           email: Yup.string().required('Este campo es obligatorio').email('Direccion de correo no valida'),
-          password: Yup.string().required('Este campo es obligatorio').min(8,'Complete 8 caracteres en el campo contraseña')
+          password: Yup.string().required('Este campo es obligatorio').min(8,'Complete 8 caracteres en el campo contraseña'),
+          idRol: Yup.number().required()
         })}
 
         onSubmit={async(values, { setSubmitting }) => {
@@ -83,8 +84,8 @@ const CreateUser = ({load,setLoad}) => {
 
                 <TextField
                   className="input"
-                  id="rol"
-                  name="rol"
+                  id="idRol"
+                  name="idRol"
                   label="Rol"
                   onChange={handleChange}
                   value={values.idRol}

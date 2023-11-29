@@ -1,12 +1,11 @@
 import React,{useEffect, useState} from "react";
 import {Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow} from "@mui/material";
 import axios from "axios";
-import './ListUSer.css'
 import { IconButton } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-const ListUser = ({load, setIdUpdate, setIdDelete}) => {
+const ListQuotes = ({load, setIdUpdate, setIdDelete}) => {
     
   const [rows, setRows] = useState([])
   const [page, setPage] = useState(0);
@@ -14,9 +13,9 @@ const ListUser = ({load, setIdUpdate, setIdDelete}) => {
 
   useEffect(()=>{
     const fetchData = async () =>{
-      const response = await axios.get(`${import.meta.env.VITE_URL_SERVER}api/User/consultUser`)
+      const response = await axios.get(`${import.meta.env.VITE_URL_SERVER}api/Quote/consultQuote`)
       console.log(response)
-      setRows(response.data.users)
+      setRows(response.data.Quotes)
     }
     fetchData()
   },[load])
@@ -43,11 +42,15 @@ const ListUser = ({load, setIdUpdate, setIdDelete}) => {
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
               <TableRow>
-                <TableCell>ID</TableCell>
-                <TableCell>Nombres</TableCell>
-                <TableCell>Apellidos</TableCell>
-                <TableCell>Email</TableCell>
-                <TableCell>Rol</TableCell>
+                <TableCell>Fecha</TableCell>
+                <TableCell>Cliente</TableCell>
+                <TableCell>serial</TableCell>
+                <TableCell>producto</TableCell>
+                <TableCell>cantidad</TableCell>
+                <TableCell>descuento</TableCell>
+                <TableCell>usuario</TableCell>
+                <TableCell>subtotal</TableCell>
+                <TableCell>total</TableCell>
                 <TableCell>Acciones</TableCell>
               </TableRow>
             </TableHead>
@@ -57,17 +60,18 @@ const ListUser = ({load, setIdUpdate, setIdDelete}) => {
                 .map((row) => {
                   return(
                     <TableRow key={row.id}>
-                    <TableCell>{row.id}</TableCell>
-                    <TableCell>{row.names}</TableCell>
-                    <TableCell>{row.lastName}</TableCell>
-                    <TableCell>{row.email}</TableCell>
-                    <TableCell>{row.role.name}</TableCell>
+                    <TableCell>{row.date}</TableCell>
+                    <TableCell>{row.customer.names}</TableCell>
+                    <TableCell>{row.serial}</TableCell>
+                    <TableCell>{row.product.name}</TableCell>
+                    <TableCell>{row.quantity}</TableCell>
+                    <TableCell>{row.discount}</TableCell>
+                    <TableCell>{row.user.names}</TableCell>
+                    <TableCell>{row.subTotal}</TableCell>
+                    <TableCell>{row.total}</TableCell>
                     <TableCell>
                       <IconButton id='btnEdit' aria-label='Editar' onClick={()=>{handleEdit(row.id)}}>
                         <EditIcon/>
-                      </IconButton>
-                      <IconButton id='btnDelete' aria-label='Eliminar' onClick={()=>{handleDelete(row.id)}}>
-                        <DeleteIcon/>
                       </IconButton>
                     </TableCell>
                   </TableRow>
@@ -87,10 +91,10 @@ const ListUser = ({load, setIdUpdate, setIdDelete}) => {
         />
       </Paper>
       <div className="contbtn">
-        <Button id='btn'>Crear Usuario</Button>
+        <Button id='btn'>Crear cotizacion</Button>
       </div>
     </div>
   );
 };
 
-export default ListUser;
+export default ListQuotes;
