@@ -1,5 +1,7 @@
 import { Container } from "@mui/material"
 import { useState } from "react"
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import CreateUser from "@components/molecules/User/CreateUser/CreateUser"
 import ListUser from "@components/molecules/User/ListUSer/ListUser"
 import UpdateUser from "@components/molecules/User/UpdateUser/UpdateUser"
@@ -11,6 +13,16 @@ const User = () =>{
   const [load,setLoad]= useState(false)
   const [idUpdate, setIdUpdate] = useState('')
   const [idDelete, setIdDelete] = useState('')
+  const navigate = useNavigate()
+  const user = useSelector(state => state.auth.user)
+  const loading = useSelector(state => state.auth.loading)
+  
+  if(loading){
+      return <>Cargando...</>
+  }
+  if(!user){
+      return navigate("/login")
+  }
 
   return(
       <>

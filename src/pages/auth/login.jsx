@@ -1,19 +1,23 @@
 import * as React from "react";
 import { TextField, Button} from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { fetchLogin } from "@lib/authSlice";
 import { Container } from "@mui/material";
 import { Formik } from "formik";
 import * as Yup from 'yup'
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+
 
 const Login = () => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const user = useSelector(state => state.auth.user)
-
+    const loading = useSelector(state => state.auth.loading)
+    
+    if(loading){
+        return <>Cargando...</>
+    }
     if(user){
         return navigate("/usuarios")
     }

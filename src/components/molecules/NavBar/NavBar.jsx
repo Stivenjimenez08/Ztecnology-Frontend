@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {useState} from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -13,6 +14,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import './NavBar.css'
+import { fetchLogout } from '@lib/authSlice';
 
 
 const pages = ['inicio','usuarios', 'clientes','productos', 'cotizaciones'];
@@ -22,6 +24,8 @@ const NavBar = () => {
 
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -37,6 +41,16 @@ const NavBar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+  const handleMenu = (typeSetting) =>{
+    if(typeSetting === 'Cerrar Sesion'){
+      logout()
+    }
+  }
+
+  const logout = () =>{
+    dispatch(fetchLogout())
+    navigate('/login')
+  }
 
   return (
     <AppBar position='static' id='NavBar'>
@@ -149,7 +163,7 @@ const NavBar = () => {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                  <Typography textAlign="center" onClick={() => {handleMenu(setting)}}>{setting}</Typography>
                 </MenuItem>
               ))}
             </Menu>
