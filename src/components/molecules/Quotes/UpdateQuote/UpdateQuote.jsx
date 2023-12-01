@@ -23,7 +23,7 @@ const UpdateQuote = ({ idUpdate , load , setLoad }) => {
     };
 
     const consultQuoteById = async(id) =>{
-      const response = await axios.get(`${import.meta.env.VITE_URL_SERVER}api/Quote/QuoteById`,id)
+      const response = await axios.get(`${import.meta.env.VITE_URL_SERVER}api/Quote/QuoteById/${id}`)
       console.log('data',response.data.Quotes)
       setFormData(response.data.Quotes)
     }

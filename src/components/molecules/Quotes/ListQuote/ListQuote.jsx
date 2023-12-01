@@ -42,16 +42,16 @@ const ListQuotes = ({load, setIdUpdate, setIdDelete}) => {
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
               <TableRow>
-                <TableCell>Fecha</TableCell>
-                <TableCell>Cliente</TableCell>
-                <TableCell>serial</TableCell>
-                <TableCell>producto</TableCell>
-                <TableCell>cantidad</TableCell>
-                <TableCell>descuento</TableCell>
-                <TableCell>usuario</TableCell>
-                <TableCell>subtotal</TableCell>
-                <TableCell>total</TableCell>
-                <TableCell>Acciones</TableCell>
+                <TableCell align="center"><strong>Fecha</strong></TableCell>
+                <TableCell align="center"><strong>Cliente</strong></TableCell>
+                <TableCell align="center"><strong>serial</strong></TableCell>
+                <TableCell align="center"><strong>producto</strong></TableCell>
+                <TableCell align="center"><strong>cantidad</strong></TableCell>
+                <TableCell align="center"><strong>descuento</strong></TableCell>
+                <TableCell align="center"><strong>usuario</strong></TableCell>
+                <TableCell align="center"><strong>subtotal</strong></TableCell>
+                <TableCell align="center"><strong>total</strong></TableCell>
+                <TableCell align="center"><strong>Acciones</strong></TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -60,16 +60,16 @@ const ListQuotes = ({load, setIdUpdate, setIdDelete}) => {
                 .map((row) => {
                   return(
                     <TableRow key={row.id}>
-                    <TableCell>{row.date}</TableCell>
-                    <TableCell>{row.customer.names}</TableCell>
-                    <TableCell>{row.serial}</TableCell>
-                    <TableCell>{row.product.name}</TableCell>
-                    <TableCell>{row.quantity}</TableCell>
-                    <TableCell>{row.discount}</TableCell>
-                    <TableCell>{row.user.names}</TableCell>
-                    <TableCell>{row.subTotal}</TableCell>
-                    <TableCell>{row.total}</TableCell>
-                    <TableCell>
+                    <TableCell align="center">{row.date}</TableCell>
+                    <TableCell align="center">{row.customer.names}</TableCell>
+                    <TableCell align="center">{row.serial}</TableCell>
+                    <TableCell align="center">{row.product.name}</TableCell>
+                    <TableCell align="center">{row.quantity}</TableCell>
+                    <TableCell align="center">{row.discount}</TableCell>
+                    <TableCell align="center">{row.user.names}</TableCell>
+                    <TableCell align="center">{row.subTotal}</TableCell>
+                    <TableCell align="center">{row.total}</TableCell>
+                    <TableCell align="center">
                       <IconButton id='btnEdit' aria-label='Editar' onClick={()=>{handleEdit(row.id)}}>
                         <EditIcon/>
                       </IconButton>
@@ -90,9 +90,9 @@ const ListQuotes = ({load, setIdUpdate, setIdDelete}) => {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Paper>
-      <div className="contbtn">
+      {/* <div className="contbtn">
         <Button id='btn'>Crear cotizacion</Button>
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -84,11 +84,12 @@ const ListCustomer = ({load, setIdUpdate, setIdDelete}) => {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Paper>
-      <div className="contbtn">
+      {/* <div className="contbtn">
         <Button id='btn'>Crear Cliente</Button>
-      </div>
+      </div> */}
     </div>
   );
 };
+
 
 export default ListCustomer;

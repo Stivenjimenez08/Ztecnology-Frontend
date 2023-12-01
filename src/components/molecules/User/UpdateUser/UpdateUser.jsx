@@ -11,8 +11,8 @@ import * as yup from 'yup';
 
 const UpdateUser = ({ idUpdate , load , setLoad }) => {
 
-    const [open, setOpen] =  useState(false);
     const [formData, setFormData] = useState({})
+    const [open, setOpen] =  useState(false);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -23,8 +23,7 @@ const UpdateUser = ({ idUpdate , load , setLoad }) => {
     };
 
     const consultUserById = async(id) =>{
-      const response = await axios.get(`${import.meta.env.VITE_URL_SERVER}api/User/UserById`,id)
-      console.log('data',response.data.users)
+      const response = await axios.get(`${import.meta.env.VITE_URL_SERVER}api/User/UserById/${id}`)
       setFormData(response.data.users)
     }
     useEffect(()=>{
@@ -49,7 +48,7 @@ const UpdateUser = ({ idUpdate , load , setLoad }) => {
             names: formData.names || '',
             lastName: formData.lastName || '',
             email: formData.email || '',
-            password: formData.password || '',
+            password: '',
             idRol: formData.idRol ||''
           }}
 
@@ -75,6 +74,7 @@ const UpdateUser = ({ idUpdate , load , setLoad }) => {
             <form onSubmit={handleSubmit}>
               <DialogTitle id="alert-dialog-title">
                 {"Actualice usuario"}
+                
               </DialogTitle>
 
               <DialogContent>
@@ -122,6 +122,17 @@ const UpdateUser = ({ idUpdate , load , setLoad }) => {
                     value={values.password}
                     error={errors.password}
                     helperText={errors.password}
+                  />
+                  <TextField
+                    sx={{ mt: 1 }}
+                    fullWidth
+                    id="idRol"
+                    name="idRol"
+                    label="Rol"
+                    onChange={handleChange}
+                    value={values.idRol}
+                    error={errors.idRol}
+                    helperText={errors.idRol}
                   />
                 </DialogContentText>
               </DialogContent>

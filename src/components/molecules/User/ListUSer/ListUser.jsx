@@ -1,21 +1,22 @@
 import React,{useEffect, useState} from "react";
+import { useSelector } from "react-redux";
+import { IconButton } from '@mui/material';
 import {Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow} from "@mui/material";
 import axios from "axios";
-import './ListUSer.css'
-import { IconButton } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import './ListUSer.css'
 
 const ListUser = ({load, setIdUpdate, setIdDelete}) => {
     
   const [rows, setRows] = useState([])
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
+  const user = useSelector(state => state.auth.user)
 
   useEffect(()=>{
     const fetchData = async () =>{
       const response = await axios.get(`${import.meta.env.VITE_URL_SERVER}api/User/consultUser`)
-      console.log(response)
       setRows(response.data.users)
     }
     fetchData()
@@ -43,12 +44,12 @@ const ListUser = ({load, setIdUpdate, setIdDelete}) => {
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
               <TableRow>
-                <TableCell>ID</TableCell>
-                <TableCell>Nombres</TableCell>
-                <TableCell>Apellidos</TableCell>
-                <TableCell>Email</TableCell>
-                <TableCell>Rol</TableCell>
-                <TableCell>Acciones</TableCell>
+                <TableCell align="center"><strong>ID</strong></TableCell>
+                <TableCell align="center"><strong>Nombres</strong></TableCell>
+                <TableCell align="center"><strong>Apellidos</strong></TableCell>
+                <TableCell align="center"><strong>Email</strong></TableCell>
+                <TableCell align="center"><strong>Rol</strong></TableCell>
+                {user.idRol==1 && <TableCell align="center"><strong>Acciones</strong></TableCell>}
               </TableRow>
             </TableHead>
             <TableBody>
@@ -57,19 +58,23 @@ const ListUser = ({load, setIdUpdate, setIdDelete}) => {
                 .map((row) => {
                   return(
                     <TableRow key={row.id}>
-                    <TableCell>{row.id}</TableCell>
-                    <TableCell>{row.names}</TableCell>
-                    <TableCell>{row.lastName}</TableCell>
-                    <TableCell>{row.email}</TableCell>
-                    <TableCell>{row.role.name}</TableCell>
-                    <TableCell>
+                    <TableCell align="center">{row.id}</TableCell>
+                    <TableCell align="center">{row.names}</TableCell>
+                    <TableCell align="center">{row.lastName}</TableCell>
+                    <TableCell align="center">{row.email}</TableCell>
+                    <TableCell align="center">{row.role.name}</TableCell>
+                    {user.idRol==1 && <TableCell align="center">
+                      
                       <IconButton id='btnEdit' aria-label='Editar' onClick={()=>{handleEdit(row.id)}}>
                         <EditIcon/>
                       </IconButton>
+
                       <IconButton id='btnDelete' aria-label='Eliminar' onClick={()=>{handleDelete(row.id)}}>
                         <DeleteIcon/>
                       </IconButton>
                     </TableCell>
+                    }
+                  
                   </TableRow>
                   )
                 })} 
@@ -86,9 +91,9 @@ const ListUser = ({load, setIdUpdate, setIdDelete}) => {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Paper>
-      <div className="contbtn">
+      {/* <div className="contbtn">
         <Button id='btn'>Crear Usuario</Button>
-      </div>
+      </div> */}
     </div>
   );
 };

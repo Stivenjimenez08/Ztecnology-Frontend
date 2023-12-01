@@ -29,19 +29,10 @@ const User = () =>{
         <Container className="container" sx={{mt:5}}>
           <h1>Usuarios</h1>
           <ListUser load={load} setIdUpdate={setIdUpdate} setIdDelete={setIdDelete}/>
-          <CreateUser load={load} setLoad={setLoad}/>
+          {user.idRol==1 && <CreateUser load={load} setLoad={setLoad}/>}
           <UpdateUser idUpdate={idUpdate} load={load} setLoad={setLoad}/>
           <DeleteUser idDelete={idDelete} load={load} setLoad={setLoad}/>
         </Container>
-
-        
-          {/* <Router>
-          <Routes>
-            <h1>Usuarios</h1>
-            <Route path='/listar' element={<ListUser />}></Route>
-            <Route path='/crear' element={<CreateUser/>}/>
-          </Routes>
-          </Router> */}
       </>
     )
 }

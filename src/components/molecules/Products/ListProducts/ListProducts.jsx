@@ -41,11 +41,11 @@ const ListProducts = ({load, setIdUpdate}) => {
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
               <TableRow>
-                <TableCell>Nombre</TableCell>
-                <TableCell>Descripcion</TableCell>
-                <TableCell>Stock</TableCell>
-                <TableCell>precio</TableCell>
-                <TableCell>Acciones</TableCell>
+                <TableCell align="center"><strong>Nombre</strong></TableCell>
+                <TableCell align="center"><strong>Descripcion</strong></TableCell>
+                <TableCell align="center"><strong>Stock</strong></TableCell>
+                <TableCell align="center"><strong>precio</strong></TableCell>
+                <TableCell align="center"><strong>Acciones</strong></TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -54,11 +54,11 @@ const ListProducts = ({load, setIdUpdate}) => {
                 .map((row) => {
                   return(
                     <TableRow key={row.id}>
-                    <TableCell>{row.name}</TableCell>
-                    <TableCell>{row.description}</TableCell>
-                    <TableCell>{row.stock}</TableCell>
-                    <TableCell>{row.price}</TableCell>
-                    <TableCell>
+                    <TableCell align="center">{row.name}</TableCell>
+                    <TableCell align="center">{row.description}</TableCell>
+                    <TableCell align="center">{row.stock}</TableCell>
+                    <TableCell align="center">{row.price}</TableCell>
+                    <TableCell align="center">
                       <IconButton id='btnEdit' aria-label='Editar' onClick={()=>{handleEdit(row.id)}}>
                         <EditIcon/>
                       </IconButton>
@@ -79,9 +79,9 @@ const ListProducts = ({load, setIdUpdate}) => {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Paper>
-      <div className="contbtn">
+      {/* <div className="contbtn">
         <Button id='btn'>Crear Producto</Button>
-      </div>
+      </div> */}
     </div>
   );
 };

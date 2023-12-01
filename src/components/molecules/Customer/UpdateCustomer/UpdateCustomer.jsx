@@ -23,9 +23,7 @@ const UpdateCustomer = ({ idUpdate , load , setLoad }) => {
     };
 
     const consultCustomerById = async(id) =>{
-      console.log(id)
-      const response = await axios.get(`${import.meta.env.VITE_URL_SERVER}api/Customer/customerById`,id)
-      console.log('data',response.data.customers)
+      const response = await axios.get(`${import.meta.env.VITE_URL_SERVER}api/Customer/customerById/${id}`)
       setFormData(response.data.customers)
     }
     useEffect(()=>{

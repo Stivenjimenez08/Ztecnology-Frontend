@@ -23,7 +23,7 @@ const UpdateProduct = ({ idUpdate , load , setLoad }) => {
     };
 
     const consultProductsById = async(id) =>{
-      const response = await axios.get(`${import.meta.env.VITE_URL_SERVER}api/Product/productById`,id)
+      const response = await axios.get(`${import.meta.env.VITE_URL_SERVER}api/Product/productById/${id}`)
       console.log('data',response.data.products)
       setFormData(response.data.products)
     }
