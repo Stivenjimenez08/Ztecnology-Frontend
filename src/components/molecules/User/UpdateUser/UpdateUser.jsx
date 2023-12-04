@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import { Button, TextField } from "@mui/material";
+import { useSelector } from "react-redux";
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -13,6 +14,7 @@ const UpdateUser = ({ idUpdate , load , setLoad }) => {
 
     const [formData, setFormData] = useState({})
     const [open, setOpen] =  useState(false);
+    const user = useSelector(state => state.auth.user)
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -72,46 +74,60 @@ const UpdateUser = ({ idUpdate , load , setLoad }) => {
             handleSubmit
           }) => (
             <form onSubmit={handleSubmit}>
+              {user.idRol === 1 &&
               <DialogTitle id="alert-dialog-title">
-                {"Actualice usuario"}
-                
+              {"Actualice usuario"}
+              
               </DialogTitle>
+              }
+              {user.idRol === 2 &&
+              <DialogTitle id="alert-dialog-title">
+              {"Actualizar contraseña"}
+              
+              </DialogTitle>
+              }
+              
 
               <DialogContent>
                 <DialogContentText id="alert-dialog-description">
-                  <TextField
-                    sx={{ mt: 1 }}
-                    fullWidth
-                    id="names"
-                    name="names"
-                    label="nombre"
-                    onChange={handleChange}
-                    value={values.names}
-                    error={errors.names}
-                    helperText={errors.names}
-                  />
-                  <TextField
-                    sx={{ mt: 1 }}
-                    fullWidth
-                    id="lastName"
-                    name="lastName"
-                    label="Apellidos"
-                    onChange={handleChange}
-                    value={values.lastName}
-                    error={errors.lastName}
-                    helperText={errors.lastName}
-                  />
-                  <TextField
-                    sx={{ mt: 1 }}
-                    fullWidth
-                    id="email"
-                    name="email"
-                    label="Correo Electronico"
-                    onChange={handleChange}
-                    value={values.email}
-                    error={errors.email}
-                    helperText={errors.names}
-                  />
+                {user.idRol === 1 && <div>
+                    <TextField
+                  sx={{ mt: 1 }}
+                  fullWidth
+                  id="names"
+                  name="names"
+                  label="nombre"
+                  onChange={handleChange}
+                  value={values.names}
+                  error={errors.names}
+                  helperText={errors.names}
+                />
+                <TextField
+                  sx={{ mt: 1 }}
+                  fullWidth
+                  id="lastName"
+                  name="lastName"
+                  label="Apellidos"
+                  onChange={handleChange}
+                  value={values.lastName}
+                  error={errors.lastName}
+                  helperText={errors.lastName}
+                />
+                <TextField
+                  sx={{ mt: 1 }}
+                  fullWidth
+                  id="email"
+                  name="email"
+                  label="Correo Electronico"
+                  onChange={handleChange}
+                  value={values.email}
+                  error={errors.email}
+                  helperText={errors.names}
+                />
+                </div>
+                  
+                }
+                  
                   <TextField
                     sx={{ mt: 1 }}
                     fullWidth
@@ -123,7 +139,8 @@ const UpdateUser = ({ idUpdate , load , setLoad }) => {
                     error={errors.password}
                     helperText={errors.password}
                   />
-                  <TextField
+                  {user.idRol === 1 && <div>
+                    <TextField
                     sx={{ mt: 1 }}
                     fullWidth
                     id="idRol"
@@ -134,6 +151,9 @@ const UpdateUser = ({ idUpdate , load , setLoad }) => {
                     error={errors.idRol}
                     helperText={errors.idRol}
                   />
+                  </div>
+                  }
+                  
                 </DialogContentText>
               </DialogContent>
               <DialogActions>

@@ -66,10 +66,10 @@ const UpdateQuote = ({ idUpdate , load , setLoad }) => {
             discount: yup.string(),
             idUser: yup.string().required('Este campo es obligatorio'),
             subTotal: yup.string(),
-            total: yup.string().required('Este campo es obligatorio'),
+            total: yup.number().required('Este campo es obligatorio')
           })}
           onSubmit={async (values, { setSubmitting }) => {
-            const response = await axios.put(`${import.meta.env.VITE_URL_SERVER}api/User/updateUser`,values);
+            const response = await axios.put(`${import.meta.env.VITE_URL_SERVER}api/Quote/updateQuote`,values);
             console.log(response);
             setLoad(!load);
             setOpen(false);
@@ -83,7 +83,7 @@ const UpdateQuote = ({ idUpdate , load , setLoad }) => {
           }) => (
             <form onSubmit={handleSubmit}>
               <DialogTitle id="alert-dialog-title">
-                {"Actualice usuario"}
+                {"Actualice Cotizacion"}
               </DialogTitle>
 
               <DialogContent>
@@ -99,7 +99,7 @@ const UpdateQuote = ({ idUpdate , load , setLoad }) => {
                     error={errors.date}
                     helperText={errors.date}
                   />
-                  <TextField // preguntar como poner el nombre  y en base de datos ponga el id
+                  <TextField 
                     className="input"
                     id="idCustomer"
                     name="idCustomer"

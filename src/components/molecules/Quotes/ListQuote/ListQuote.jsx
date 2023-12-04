@@ -3,9 +3,8 @@ import {Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, T
 import axios from "axios";
 import { IconButton } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
 
-const ListQuotes = ({load, setIdUpdate, setIdDelete}) => {
+const ListQuotes = ({load, setIdUpdate}) => {
     
   const [rows, setRows] = useState([])
   const [page, setPage] = useState(0);
@@ -30,9 +29,6 @@ const ListQuotes = ({load, setIdUpdate, setIdDelete}) => {
   };
   const handleEdit = async(id) =>{
     setIdUpdate(id);
-  }
-  const handleDelete = async(id) =>{
-    setIdDelete(id);
   }
 
   return (
@@ -90,9 +86,6 @@ const ListQuotes = ({load, setIdUpdate, setIdDelete}) => {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Paper>
-      {/* <div className="contbtn">
-        <Button id='btn'>Crear cotizacion</Button>
-      </div> */}
     </div>
   );
 };

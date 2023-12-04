@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import ListQuotes from "@components/molecules/Quotes/ListQuote/ListQuote"
 import CreateQuote from "@components/molecules/Quotes/CreateQuote/CreateQuote"
-import UpdateQuote from "../../components/molecules/Quotes/UpdateQuote/UpdateQuote"
+import UpdateQuote from "@components/molecules/Quotes/UpdateQuote/UpdateQuote"
 
 const Quote = () => {
     const [load,setLoad]= useState(false)

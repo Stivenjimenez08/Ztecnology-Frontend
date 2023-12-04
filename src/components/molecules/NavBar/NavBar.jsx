@@ -1,7 +1,8 @@
 import * as React from 'react';
 import {useState} from 'react'
-import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { fetchLogout } from '@lib/authSlice';
+import { Link, useNavigate } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -14,7 +15,6 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import './NavBar.css'
-import { fetchLogout } from '@lib/authSlice';
 
 
 const pages = ['inicio','usuarios', 'clientes','productos', 'cotizaciones'];
@@ -44,6 +44,9 @@ const NavBar = () => {
   const handleMenu = (typeSetting) =>{
     if(typeSetting === 'Cerrar Sesion'){
       logout()
+    }
+    if(typeSetting === 'Perfil'){
+      navigate('/perfil')
     }
   }
 

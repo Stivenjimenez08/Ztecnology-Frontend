@@ -49,7 +49,7 @@ const ListUser = ({load, setIdUpdate, setIdDelete}) => {
                 <TableCell align="center"><strong>Apellidos</strong></TableCell>
                 <TableCell align="center"><strong>Email</strong></TableCell>
                 <TableCell align="center"><strong>Rol</strong></TableCell>
-                {user.idRol==1 && <TableCell align="center"><strong>Acciones</strong></TableCell>}
+                <TableCell align="center"><strong>Acciones</strong></TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -72,6 +72,17 @@ const ListUser = ({load, setIdUpdate, setIdDelete}) => {
                       <IconButton id='btnDelete' aria-label='Eliminar' onClick={()=>{handleDelete(row.id)}}>
                         <DeleteIcon/>
                       </IconButton>
+                      
+                    </TableCell>
+                    }
+                    {user.id === row.id && 
+                    
+                    <TableCell align="center">
+                      
+                      <IconButton id='btnEdit' aria-label='Editar' onClick={()=>{handleEdit(row.id)}}>
+                        <EditIcon/>
+                      </IconButton>
+
                     </TableCell>
                     }
                   
