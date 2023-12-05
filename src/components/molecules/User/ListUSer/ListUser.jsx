@@ -75,7 +75,7 @@ const ListUser = ({load, setIdUpdate, setIdDelete}) => {
                       
                     </TableCell>
                     }
-                    {user.id === row.id && 
+                    {user.id === row.id && user.idRol!==1 && 
                     
                     <TableCell align="center">
                       
